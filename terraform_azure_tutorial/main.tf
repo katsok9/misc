@@ -144,7 +144,7 @@ resource "azurerm_virtual_machine" "myterraformvm" {
 
     ssh_keys {
       path     = "/home/azureuser/.ssh/authorized_keys"
-      key_data = "ssh-rsa AAAAB3Nz{snip}hwhqT9h"
+      key_data = "ssh-rsa AAAAB3Nza{snip}Ia+k8cx"
     }
   }
 
