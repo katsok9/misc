@@ -3,7 +3,7 @@ provider "azurerm" {}
 
 # Create a resource group
 resource "azurerm_resource_group" "myfirstrg" {
-  name     = "${var.rg_name}"
+  name = "${var.rg_name}"
   location = "${var.rg_location}"
 
   tags {
@@ -13,27 +13,25 @@ resource "azurerm_resource_group" "myfirstrg" {
 
 # Create a virtual network within the resource group
 resource "azurerm_virtual_network" "myfirstntwk" {
-  name                = "${var.vn_name}"
-  address_space       = "${var.vn_addr_space}"
-  location            = "${azurerm_resource_group.myfirstrg.location}"
+  name = "${var.vn_name}"
+  address_space = "${var.vn_addr_space}"
+  location = "${azurerm_resource_group.myfirstrg.location}"
   resource_group_name = "${azurerm_resource_group.myfirstrg.name}"
-
-  subnet {
-    name           = "${var.subnet_pref}1"
-    address_prefix = "10.0.1.0/24"
-  }
-
-  subnet {
-    name           = "${var.subnet_pref}2"
-    address_prefix = "10.0.2.0/24"
-  }
-
-  subnet {
-    name           = "${var.subnet_pref}3"
-    address_prefix = "10.0.3.0/24"
-  }
 }
 
+
+resource "azurerm_subnet" "myfirstsubnet" {
+  name = "${var.sb_name}"
+  resource_group_name = "${azurerm_resource_group.myfirstrg.name}"
+  virtual_network_name = "${azurerm_virtual_network.myfirstntwk.name}"
+  address_prefix = "${var.sb_address_prefix}"
+}
+output "sb_address_prefix"
+{
+  value = "${azurerm_subnet.myfirstsubnet.address_prefix}"
+}
+
+
 output "vn_address_space" {
-  value = "${azurerm_virtual_network.myfirstntwk.subnets.1.name}"
+  value = "${azurerm_virtual_network.myfirstntwk.address_space}"
 }
