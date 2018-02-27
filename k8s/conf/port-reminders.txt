@@ -1,0 +1,10 @@
+Master nodes:
+	TCP	6443*	Kubernetes API server
+	TCP	6443*	Kubernetes API server
+	TCP	6443*	Kubernetes API server
+	TCP	6443*	Kubernetes API server
+	TCP	6443*	Kubernetes API server
+	TCP	6443*	Kubernetes API server
+	TCP	6443*	Kubernetes API server
+
+    InserInsert Npm 
