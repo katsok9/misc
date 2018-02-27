@@ -1,0 +1,14 @@
+#extract the first x-megabyte from a large file
+dd if=largefile count=6 bs=1M > largefile.6megsonly
+
+#if no GNU dd This again assumes bash-style arithmetic evaluation
+dd if=largefile count=$((6*1024)) bs=1024 > largefile.6megsonly
+
+#split file per bites
+split -b 20m filepath outputfilepath
+
+#count files in folder
+ll -1  /artdata/snyk/snyk-dockerSwarm* | wc -l
+
+#Canonical count files in folder
+find . ! -name . -prune -print | grep -c /
